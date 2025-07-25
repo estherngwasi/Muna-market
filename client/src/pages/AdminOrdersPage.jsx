@@ -12,11 +12,13 @@ const AdminOrdersPage = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
+  const API_URL = import.meta.env.VITE_API_URL || '';
+
   const fetchOrders = async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get('/api/orders', {
+      const res = await axios.get(`${API_URL}/api/orders`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(res.data);
@@ -35,7 +37,7 @@ const AdminOrdersPage = () => {
   const handleStatusChange = async (orderId, newStatus) => {
     setSuccess(null);
     try {
-      await axios.put(`/api/orders/${orderId}/status`, { status: newStatus }, {
+      await axios.put(`${API_URL}/api/orders/${orderId}/status`, { status: newStatus }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess('Order status updated!');
