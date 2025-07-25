@@ -4,6 +4,8 @@ import axios from 'axios';
 import ProductForm from '../components/ProductForm';
 import AdminNav from '../components/AdminNav';
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 const AdminProductsPage = () => {
   const { token } = useSelector((state) => state.auth);
   const [products, setProducts] = useState([]);
@@ -17,7 +19,7 @@ const AdminProductsPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get('/api/products');
+      const res = await axios.get(`${API_URL}/api/products`);
       setProducts(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch products');
@@ -35,7 +37,7 @@ const AdminProductsPage = () => {
     setError(null);
     setSuccess(null);
     try {
-      await axios.post('/api/products', formData, {
+      await axios.post(`${API_URL}/api/products`, formData, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
       });
       setSuccess('Product added!');
@@ -56,7 +58,7 @@ const AdminProductsPage = () => {
     setError(null);
     setSuccess(null);
     try {
-      await axios.put(`/api/products/${editing._id}`, formData, {
+      await axios.put(`${API_URL}/api/products/${editing._id}`, formData, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' },
       });
       setSuccess('Product updated!');
@@ -74,7 +76,7 @@ const AdminProductsPage = () => {
     setError(null);
     setSuccess(null);
     try {
-      await axios.delete(`/api/products/${id}`, {
+      await axios.delete(`${API_URL}/api/products/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess('Product deleted!');
