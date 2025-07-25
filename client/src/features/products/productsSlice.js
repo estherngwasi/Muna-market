@@ -1,12 +1,12 @@
-const API_URL = import.meta.env.VITE_API_URL || '';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('/api/products');
+      const response = await axios.get(`${API_URL}/api/products`);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch products');
