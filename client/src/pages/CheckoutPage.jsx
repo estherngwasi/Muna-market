@@ -44,7 +44,8 @@ const CheckoutPage = () => {
         shippingFee,
         total,
       };
-      await axios.post('/api/orders', order, {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      await axios.post(`${API_URL}/api/orders`, order, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess(true);
