@@ -37,7 +37,8 @@ const AdminDashboardPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get('/api/admin/dashboard-summary', {
+        const API_URL = import.meta.env.VITE_API_URL || '';
+        const res = await axios.get(`${API_URL}/api/admin/dashboard-summary`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSummary(res.data);
