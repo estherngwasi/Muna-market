@@ -25,7 +25,7 @@ Muna Ecommerce is a full-stack web application for an online marketplace, built 
 ### Prerequisites
 - Node.js (v16+ recommended)
 - npm
-- MongoDB database (local or Atlas)
+- MongoDB database( Atlas)
 
 ### 1. Clone the repository
 ```sh
