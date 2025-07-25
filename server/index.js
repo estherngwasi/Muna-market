@@ -7,7 +7,13 @@ dotenv.config();
 console.log('MONGO_URI:', process.env.MONGO_URI);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://muna-market-ekj3.vercel.app',
+    'http://localhost:5173'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
