@@ -15,7 +15,8 @@ const OrderDetailsPage = () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`/api/orders/${id}`, {
+        const API_URL = import.meta.env.VITE_API_URL || '';
+        const res = await axios.get(`${API_URL}/api/orders/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setOrder(res.data);
