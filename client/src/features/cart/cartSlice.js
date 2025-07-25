@@ -1,10 +1,24 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL || '';
-import { createSlice } from '@reduxjs/toolkit';
 
-const cartFromStorage = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+// Example async thunk for fetching cart from backend (if you have such an endpoint)
+// export const fetchCart = createAsyncThunk(
+//   'cart/fetchCart',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const response = await axios.get(`${API_URL}/api/cart`);
+//       return response.data;
+//     } catch (err) {
+//       return rejectWithValue(err.response?.data?.message || 'Failed to fetch cart');
+//     }
+//   }
+// );
 
 const initialState = {
-  items: cartFromStorage,
+  items: [],
+  loading: false,
+  error: null,
 };
 
 const cartSlice = createSlice({
@@ -32,6 +46,21 @@ const cartSlice = createSlice({
       localStorage.removeItem('cart');
     },
   },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(fetchCart.pending, (state) => {
+  //       state.loading = true;
+  //       state.error = null;
+  //     })
+  //     .addCase(fetchCart.fulfilled, (state, action) => {
+  //       state.loading = false;
+  //       state.items = action.payload;
+  //     })
+  //     .addCase(fetchCart.rejected, (state, action) => {
+  //       state.loading = false;
+  //       state.error = action.payload;
+  //     });
+  // },
 });
 
 export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
