@@ -1,3 +1,4 @@
+const API_URL = import.meta.env.VITE_API_URL || '';
 import { createSlice } from '@reduxjs/toolkit';
 
 const cartFromStorage = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
