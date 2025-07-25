@@ -80,6 +80,9 @@ muna-ecommerce/
   server/    # Node.js/Express backend
 ```
 
+## Deployment
+Vercel https://muna-market-ekj3.vercel.app/
+Render https://muna-market.onrender.com
 ## License
 MIT
 
